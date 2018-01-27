@@ -41,16 +41,20 @@
 \maketitle
 
 \begin{abstract}
-Networked applications interact with the TCP/IP stack through
-the socket API. Over the years, various extensions
-have been added to this popular API. In this paper, we
-propose and implement the \tcpsnitch software that
-tracks the interactions between Linux and Android applications
-and the TCP/IP stack. We collect a dataset containing the
-interactions produced by more than 120 different applications.
-Our analysis reveals that applications use a variety of
-API calls. On Android, many applications use various socket
-options even if the Java API does not expose them directly.
+Networked applications interact with the TCP/IP stack through the socket API.
+Over the years, the computing environment in which this API is being used has
+dramatically changed and many extensions have been added. In this paper, we
+propose and implement \tcpsnitchns, an open-source software that collects
+detailed traces of the interactions between networked applications and the
+TCP/IP stack and sends them to a publicly
+available database, \tcpsnitchwebns, exposing various statistics. We collect
+about 5~M API calls made by more than 130 Linux and Android applications on
+24~K sockets. Our analysis reveals that the socket API usage in the wild
+differs greatly from textbook usage. Many Internet sockets do not exchange
+data, many API calls are redundant and many calls use tiny data buffers. On
+Android, UDP sockets are mainly used as a shortcut to retrieve information
+about the network configuration using \texttt{ioctl()} and most applications
+use various socket options even if the Java API does not expose them directly.
 \tcpsnitch and the associated dataset are publicly available.
 \end{abstract}
 
