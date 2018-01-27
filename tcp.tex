@@ -12,10 +12,7 @@ analyze in more details the sockets that connect to distant servers.
 
 We observe that a staggering 73\% of the local sockets only call
 \texttt{setsockopt(SO\_RCVTIMEO)} once or several times after the initial
-\texttt{socket()} call. As a result, figure~\ref{fig:sockopts_usage} shows how
-the \texttt{SO\_RCVTIMEO} socket option dominates the \texttt{setsockopt()} and
-\texttt{getsockopt()} arguments for TCP sockets (both local and remote). Since
-\texttt{SO\_RCVTIMEO} only modifies the receiving timeout of the target socket,
+\texttt{socket()} call. Since \texttt{SO\_RCVTIMEO} only modifies the receiving timeout of the target socket,
 these operations seem wasteful but we could not find a valid explanation for
 this behavior. Another 16\% of the local sockets only call \texttt{close()}
 after \texttt{socket()} and 3\% call \texttt{ioctl(SIOCGIWNAME)} to determine
@@ -25,18 +22,6 @@ UDP sockets use \texttt{ioctl()} to retrieve information about the network, we
 rarely observe \texttt{ioctl()} on TCP sockets. This supports our
 observation that applications prefer to perform \texttt{ioctl()} requests
 on UDP sockets because they are less costly.
-
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{figures/sockopts_pie}
-\caption{getsockopt() and setsockopt() arguments for all TCP sockets (local
-    and remote). SO\_RCVTIMEO is  by far the most used argument. SO\_ERROR is
-    often used after a non-blocking connect(). The non-standard TCP\_INFO
-    option is often retrieved. SO\_LINGER and SO\_DEBUG are often used together
-    before a close() call.
-}
-\label{fig:sockopts_usage}
-\end{figure}
 
 \begin{table}[]
 \centering
@@ -191,6 +176,4 @@ connection lasting 32 seconds where \texttt{TCP\_INFO} was retrieved about
 3000 times, almost as often as the 3500 \texttt{recv()} calls on the same
 connection. These \texttt{TCP\_INFO} calls do not specifically happen at the
 start or the end of a connection, but seem uniformly distributed during the
-lifetime of the TCP connection. As figure~\ref{fig:sockopts_usage} shows,
-\texttt{TCP\_INFO} is the second most used socket option argument for TCP
-sockets.
+lifetime of the TCP connection.
