@@ -24,27 +24,10 @@ noticed that 85\% of the opened \texttt{SOCK\_DGRAM}
 sockets do not send or receive \emph{any} data. Those sockets are
 created to retrieve information about the networking environment using
 \texttt{ioctl()}. While a single application opened 30\% of these
-sockets, 15 applications use UDP and never send UDP data.
-Table~\ref{fig:udp_ioctls} details the main \texttt{ioctl()}
-requests. Although those \texttt{ioctl()} apply to any socket, we
+sockets, 15 applications use UDP and never send UDP data. Although those
+\texttt{ioctl()} apply to any socket, we
 suspect that applications perform them on UDP sockets because they are
 cheaper than their TCP counterpart.
-
-\begin{table}[]
-    \centering
-    \begin{tabular}{lll}
-        \textbf{} & \textbf{Request} & \textbf{Purpose (get dev *)}      \\
-        44\%   & SIOCGIFADDR      & Address                   \\
-        25\%   & SIOCGIFNAME      & Name                      \\
-        20\%   & SIOCGIFFLAGS     & Active flag word          \\
-        5\%    & SIOCGIFNETMASK   & Network mask              \\
-        5\%    & SIOCGIFBRDADDR   & Broadcast address         \\
-        1\%    & Others           & N/A
-    \end{tabular}
-    \caption{ioctl() requests breakdown. 85\% of the UDP sockets use these
-    requests to get information about the network devices.}
-    \label{fig:udp_ioctls}
-\end{table}
 
 Overall, 16 applications sent or received data over UDP: 5 are
 video-telephony apps such as Google Hangout or Skype, 4 are video
