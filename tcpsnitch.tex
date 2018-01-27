@@ -1,0 +1,67 @@
+\documentclass{sig-alternate-10pt}
+\usepackage{url}
+\usepackage[backgroundcolor=yellow]{todonotes}
+% todonotes: \listoftodos & \todo{Some note or other.} & \missingfigure{}.
+% todonotes: Options: 'disable' to not show these todo
+\presetkeys{todonotes}{inline}{}
+
+% Set letter paper size:
+\setlength{\paperheight}{11in}
+\setlength{\paperwidth}{8.5in}
+\usepackage[
+  pass,% keep layout unchanged
+    % showframe,% show the layout
+]{geometry}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\tikzset{
+      font={\fontsize{9pt}{10}\selectfont}}
+
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+\begin{document}
+
+\title{TCPSnitch: Dissecting the Usage of the Socket API}
+%\titlenote{Produces the permission block, and copyright information}
+
+%\subtitle{Extended Abstract}
+%\subtitlenote{The full version of the author's guide is available as \texttt{acmart.pdf} document}
+
+\newcommand{\tcpsnitch}{\texttt{TCPSnitch} }
+\newcommand{\tcpsnitchns}{\texttt{TCPSnitch}}
+
+\numberofauthors{1}
+\author{
+\alignauthor Gregory Vander Schueren\textsuperscript{1}, Quentin De Coninck\textsuperscript{2} and Olivier Bonaventure\textsuperscript{2} \\
+    \affaddr{Universite Catholique de Louvain, Louvain-la-Neuve, Belgium}\\
+    \email{\textsuperscript{1}gregory.vanderschueren@gmail.be, \textsuperscript{2}\{first.last\}@uclouvain.be}
+}
+\maketitle
+
+\begin{abstract}
+Networked applications interact with the TCP/IP stack through
+the socket API. Over the years, various extensions
+have been added to this popular API. In this paper, we
+propose and implement the \tcpsnitch software that
+tracks the interactions between Linux and Android applications
+and the TCP/IP stack. We collect a dataset containing the
+interactions produced by more than 120 different applications.
+Our analysis reveals that applications use a variety of
+API calls. On Android, many applications use various socket
+options even if the Java API does not expose them directly.
+\tcpsnitch and the associated dataset are publicly available.
+\end{abstract}
+
+\input{intro}
+\input{methodology}
+\input{dataset}
+\input{udp}
+\input{tcp}
+\input{conclusion}
+\newpage
+\bibliographystyle{plain}
+\bibliography{tcpsnitch}
+
+\end{document}

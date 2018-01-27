@@ -1,0 +1,73 @@
+\section{UDP sockets}\label{sec:udp}
+
+We first analyze how UDP is used by the 31 applications in our dataset that
+open at least one \texttt{SOCK\_DGRAM} socket. Note that those UDP sockets are
+explicitly requested by the applications themselves since \tcpsnitch does not
+track \texttt{getaddrinfo()} and related functions that are part of
+\texttt{libc}.
+
+\begin{table}[]
+\centering
+\begin{tabular}{ll}
+85\% & Get info about network with \texttt{ioctl()} \\
+8\% & \texttt{connect()} but does not exchange data \\
+6\% & Send or receive data \\
+1\% & Other usages
+\end{tabular}
+\caption{UDP sockets usage. \textmd{Most UDP sockets do not send or receive 
+\emph{any} data but get information about the network environment using ioctl().}}
+\label{tab:udp_sockets_usage}
+\end{table}
+
+Looking at the amount of data sent/received over those UDP sockets, we
+noticed that 85\% of the opened \texttt{SOCK\_DGRAM}
+sockets do not send or receive \emph{any} data. Those sockets are
+created to retrieve information about the networking environment using
+\texttt{ioctl()}. While a single application opened 30\% of these
+sockets, 15 applications use UDP and never send UDP data.
+Table~\ref{fig:udp_ioctls} details the main \texttt{ioctl()}
+requests. Although those \texttt{ioctl()} apply to any socket, we
+suspect that applications perform them on UDP sockets because they are
+cheaper than their TCP counterpart.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lll}
+        \textbf{} & \textbf{Request} & \textbf{Purpose (get dev *)}      \\
+        44\%   & SIOCGIFADDR      & Address                   \\
+        25\%   & SIOCGIFNAME      & Name                      \\
+        20\%   & SIOCGIFFLAGS     & Active flag word          \\
+        5\%    & SIOCGIFNETMASK   & Network mask              \\
+        5\%    & SIOCGIFBRDADDR   & Broadcast address         \\
+        1\%    & Others           & N/A
+    \end{tabular}
+    \caption{ioctl() requests breakdown. 85\% of the UDP sockets use these
+    requests to get information about the network devices.}
+    \label{fig:udp_ioctls}
+\end{table}
+
+Overall, 16 applications sent or received data over UDP: 5 are
+video-telephony apps such as Google Hangout or Skype, 4 are video
+or music streaming applications such as Spotify or Netflix and 3 are
+Google applications likely using QUIC like Chrome or Google Plus. The rest
+are various applications that only exchange a few hundred bytes such as
+Shazam or Angry Birds. Applications mainly use \texttt{sendto()} and
+\texttt{recvfrom()} to send or receive data. We observed that 29\% of the
+receiving calls set the \texttt{MSG\_PEEK} to peek on the receiving queue without
+removing data and that 0.6\% of the sending calls set the \texttt{MSG\_NOSIGNAL}
+flag to prevent a \texttt{SIGPIPE} from being raised in case of error.
+We did not find any indication of the usage of the other flags on
+\texttt{SOCK\_DGRAM} sockets. We noticed that Messenger uses the
+\texttt{SIOCGSTAMP} iotcl during video calls roughly every second
+\texttt{recvfrom()}. This ioctl allows round trip time measurements. Among the
+\texttt{SOCK\_DGRAM} sockets that we observed, only 6\% sent or received data.
+It is interesting to note that 8\% of the \texttt{SOCK\_DGRAM} sockets issued
+a \texttt{connect()} without sending or receiving any data.
+
+Multicast is one of the use cases for UDP sockets. We observed 8
+applications that used UDP sockets to send multicast packets but
+only 2 applications joined multicast groups. These 2 applications use
+multicast to discover other similar applications on the same LAN, e.g.
+using the Simple Service Discovery Protocol. A typical example are
+streaming applications that allow to discover another device where
+audio/video can be streamed over the network.

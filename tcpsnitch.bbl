@@ -1,0 +1,133 @@
+\begin{thebibliography}{10}
+
+\bibitem{aosp_blockguardos}
+AOSP 6.0.1.
+\newblock Blockguardos.
+\newblock https://android.googlesource.com/platform/
+  libcore/+/android-6.0.1\_r79/luni/src/main/
+  java/libcore/io/BlockGuardOs.java\#81.
+
+\bibitem{aosp_socket}
+AOSP 6.0.1.
+\newblock Socket.
+\newblock https://android.googlesource.com/platform/
+  libcore/+/android-6.0.1\_r79/luni/src/main/java/ java/net/Socket.java\#223.
+
+\bibitem{abbasi2002quality}
+Hasan Abbasi, Christian Poellabauer, Karsten Schwan, Gregory Losik, and Richard
+  West.
+\newblock A quality-of-service enhanced socket api in gnu/linux.
+\newblock In {\em Proceedings of the 4th Real-Time Linux Workshop, Boston,
+  Massachusetts}. Citeseer, 2002.
+
+\bibitem{almesberger1998using}
+Werner Almesberger, Leena Chandran-Wadia, Silvia Giordano, Jean-Yves Le~Boudec,
+  and Rolf Schmid.
+\newblock Using quality of service can be simple: Arequipa with renegotiable
+  atm connections.
+\newblock {\em Computer Networks and ISDN Systems}, 30(24):2327--2336, 1998.
+
+\bibitem{Atlidakis:POSIX}
+Vaggelis Atlidakis, Jeremy Andrus, Roxana Geambasu, Dimitris Mitropoulos, and
+  Jason Nieh.
+\newblock Posix abstractions in modern operating systems: The old, the new, and
+  the missing.
+\newblock In {\em Proceedings of the Eleventh European Conference on Computer
+  Systems}, EuroSys '16, pages 19:1--19:17, New York, NY, USA, 2016. ACM.
+
+\bibitem{aosp_conscrypt}
+conscrypt.
+\newblock Opensslsocketimpl.
+\newblock https://android.googlesource.com/platform/
+  external/conscrypt/+/android-6.0.1\_r79/src/ main/java/org/conscrypt/
+  OpenSSLSocketImpl.java\#259.
+
+\bibitem{donahoo2001pocket}
+Michael~J Donahoo and Kenneth~L Calvert.
+\newblock {\em The pocket guide to TCP/IP sockets: C version}.
+\newblock Morgan Kaufmann, 2001.
+
+\bibitem{gammo2004comparing}
+Louay Gammo, Tim Brecht, Amol Shukla, and David Pariag.
+\newblock Comparing and evaluating epoll, select, and poll event mechanisms.
+\newblock In {\em Linux Symposium}, volume~1, 2004.
+
+\bibitem{hesmans2015smapp}
+B~Hesmans, G~Detal, S~Barre, R~Bauduin, and O~Bonaventure.
+\newblock Smapp: Towards smart multipath tcp-enabled applications.
+\newblock In {\em Proceedings of the 11th ACM Conference on Emerging Networking
+  Experiments and Technologies}, page~28. ACM, 2015.
+
+\bibitem{hesmans2016enhanced}
+Benjamin Hesmans and Olivier Bonaventure.
+\newblock An enhanced socket api for multipath tcp.
+\newblock In {\em Proceedings of the 2016 Applied Networking Research
+  Workshop}, pages 1--6. ACM, 2016.
+
+\bibitem{Komu:Sockets}
+Samu; Tarkoma Sasu; Gurtov~Andrei Komu, Miika;~Varjonen.
+\newblock Sockets and beyond: Assessing the source code of network
+  applications.
+\newblock D4, 2011.
+
+\bibitem{natarajan2009sctp}
+Preethi Natarajan, Fred Baker, Paul~D Amer, and Jonathan~T Leighton.
+\newblock Sctp: What, why, and how.
+\newblock {\em IEEE Internet Computing}, 13(5), 2009.
+
+\bibitem{Provos_Scalable:2000}
+Niels Provos and Chuck Lever.
+\newblock {Scalable Network I/O in Linux}.
+\newblock In {\em USENIX 2000 Technical Conference, Freenix Track}, San Diego,
+  CA, June 2000.
+
+\bibitem{Quarterman:BSD}
+John~S. Quarterman, Abraham Silberschatz, and James~L. Peterson.
+\newblock 4.2bsd and 4.3bsd as examples of the unix system.
+\newblock {\em ACM Comput. Surv.}, 17(4):379--418, December 1985.
+
+\bibitem{rago1993unix}
+Stephen~A Rago.
+\newblock {\em UNIX System V network programming}.
+\newblock Addison-Wesley Professional, 1993.
+
+\bibitem{ritchie1984unix}
+Dennis~M Ritchie.
+\newblock The unix system: A stream input-output system.
+\newblock {\em AT\&T Bell Laboratories Technical Journal}, 63(8):1897--1910,
+  1984.
+
+\bibitem{schier2012using}
+Michael Schier and Michael Welzl.
+\newblock Using dccp: Issues and improvements.
+\newblock In {\em Network Protocols (ICNP), 2012 20th IEEE International
+  Conference on}, pages 1--9. IEEE, 2012.
+
+\bibitem{Schmidt:intents}
+Philipp~S. Schmidt, Theresa Enghardt, Ramin Khalili, and Anja Feldmann.
+\newblock Socket intents: Leveraging application awareness for multi-access
+  connectivity.
+\newblock In {\em Proceedings of the Ninth ACM Conference on Emerging
+  Networking Experiments and Technologies}, CoNEXT '13, pages 295--300, New
+  York, NY, USA, 2013. ACM.
+
+\bibitem{aosp_okhttp_socketconnector}
+SquareUp.
+\newblock Okhttp.
+\newblock https://android.googlesource.com/platform/
+  external/okhttp/+/android-6.0.1\_r79/okhttp/
+  src/main/java/com/squareup/okhttp/internal/http/ SocketConnector.java\#147.
+
+\bibitem{Stevens:UNP}
+W.~Richard Stevens, Bill Fenner, and Andrew~M. Rudoff.
+\newblock {\em UNIX Network Programming, Vol. 1}.
+\newblock Pearson Education, 3 edition, 2003.
+
+\bibitem{Tsai:LinuxAPI}
+Chia-Che Tsai, Bhushan Jain, Nafees~Ahmed Abdul, and Donald~E. Porter.
+\newblock A study of modern linux api usage and compatibility: What to support
+  when you're supporting.
+\newblock In {\em Proceedings of the Eleventh European Conference on Computer
+  Systems}, EuroSys '16, pages 16:1--16:16, New York, NY, USA, 2016. ACM.
+
+\end{thebibliography}

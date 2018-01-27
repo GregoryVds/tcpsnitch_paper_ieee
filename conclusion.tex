@@ -1,0 +1,27 @@
+\section{Discussion}\label{sec:conclusion}
+
+We have proposed \tcpsnitchns, an application that intercepts network
+system and library calls on the Linux and Android platforms to
+collect more information about their usage, including the parameters
+passed to those API calls. We collected more than 2.3 millions calls made by
+90 popular applications on sixteen thousands sockets. The application and the
+collected dataset are publicly available\footnote{The entire dataset can be
+explored via \url{https://tcpsnitch.org}. The \tcpsnitch source code is
+available from \url{https://github.com/GregoryVds/tcpsnitch} and the web
+interface can be retrieved from \url{https://github.com/GregoryVds/tcpsnitch_web}.
+}.
+
+Our analysis revealed several interesting patterns for the utilization
+of the socket API on Android applications. First, in an IPv6 enabled
+WiFi network, these applications prefer IPv6 over IPv4. Second, UDP sockets are
+mainly used as a shortcut to retrieve information about the network
+configuration. Third, many Android applications use the same pattern
+of system calls to establish and terminate TCP connections. Fourth, Android
+applications use various socket options, even some like
+\texttt{TCP\_INFO} that are not directly exposed by the standard Java
+API.
+
+\tcpsnitch and its associated website already provide a good overview
+of how real applications use the socket API. Our future work will be
+to add traces from more applications in the database and support other
+platforms starting with MacOS.

@@ -1,0 +1,64 @@
+\section{Introduction}
+
+The socket API was introduced together with release 4.2 of
+the BSD Unix distribution that included a functional TCP/IP stack
+\cite{Quarterman:BSD}. This API allows applications to interact with
+the underlying networking stack. When the socket API
+was designed, TCP/IP was one family of network protocols among many
+others and it was important to abstract those protocol families.
+The heart of the socket API is  a set of basic system calls
+including \texttt{socket}, \texttt{bind}, \texttt{connect},
+\texttt{accept}, \texttt{close}, \texttt{listen}, \texttt{send},
+\texttt{receive},\ldots Those system calls interact with the
+underlying network implementation that is part of the operating
+system kernel. The socket API was not the only approach to
+interact with the network stack. The STREAM API, based on
+\cite{ritchie1984unix} was extended to support the TCP/IP protocol
+stack and used in Unix System V \cite{rago1993unix}.
+
+Over the years, the popularity of the socket API grew in parallel
+with the deployment of the global Internet. Nowadays, the
+socket API is considered by many as the standard API for
+simple networked applications. Several popular textbooks are entirely
+devoted to this API \cite{Stevens:UNP,donahoo2001pocket}. Given the
+importance of web-based applications, many developers do not interact
+directly with the socket API anymore but rely on higher-level
+abstractions. For example, programming languages such as Java or Python
+include libraries exposing URL and implementations of
+HTTP/HTTPS. For C developers, libraries such as \texttt{libcurl} 
+also provide higher level abstractions.
+
+During the last 30 years, the socket API has evolved, with new features added
+over the years. Some were dedicated to the support of specific features, such
+as ATM \cite{almesberger1998using} or Quality of Service
+\cite{abbasi2002quality}. Other extensions \cite{Provos_Scalable:2000,
+gammo2004comparing}
+focused on improving the
+interactions between applications and the underlying stack through
+\texttt{poll/select}, \texttt{epoll},\ldots On Linux, new system
+calls to directly send pages or entire files (like \texttt{sendfile})
+were added. Furthermore, socket extensions have been defined
+for each new transport protocol \cite{schier2012using,natarajan2009sctp}.
+Socket extensions have also been proposed to deal with multihoming
+\cite{Schmidt:intents} and specific APIs have been implemented on top
+of Multipath TCP \cite{hesmans2015smapp,hesmans2016enhanced}.
+
+Recently, the Internet Engineering Task Force created the 
+Transport Services (taps) working group whose main objective is
+\emph{to help application and network 
+stack programmers by describing an (abstract) interface for applications 
+to make use of Transport Services}. Although this work will focus on
+abstract transport services, understanding how the current APIs
+are used by existing applications will help in designing generic transport
+services that correspond to their needs.
+
+We propose \texttt{TCPSnitch}, an open-source software that collects
+detailed traces of the interactions between networked applications and
+the Linux TCP/IP stack and sends them to a publicly available database exposing
+various statistics. This paper is organized as follows. We first
+describe \tcpsnitch in section~\ref{sec:tcpsnitch}. Then we present in
+section~\ref{sec:dataset} the traces that we collected from 90
+different Android applications. Section~\ref{sec:udp} analyses in more
+details the utilization of UDP sockets by those applications while
+section~\ref{sec:tcp} focuses on the TCP sockets. We summarize the
+main findings of this work and future work in section~\ref{sec:conclusion}.
